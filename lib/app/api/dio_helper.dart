@@ -3,8 +3,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:frame_app_flutter/app/data/prefs.dart';
-import 'package:frame_app_flutter/app/helpers/exception.dart';
+import 'package:frame_app_flutter/app/api/prefs.dart';
 import 'package:package_info/package_info.dart';
 
 class DioHelper {
@@ -16,10 +15,10 @@ class DioHelper {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final _info = await PackageInfo.fromPlatform();
+          final info = await PackageInfo.fromPlatform();
 
-          options.headers['Authorization'] = await Prefs.getToken();
-          options.headers['app-version'] = '${_info.version}';
+          options.headers['Authorization'] = await Prefs.getStringValue(EnumPrefs.TOKEN);
+          options.headers['app-version'] = '${info.version}';
           options.headers['platform'] = '${Platform.isAndroid ? 'android' : 'ios'}';
           options.headers['lang'] = 'es';
 
@@ -29,16 +28,7 @@ class DioHelper {
           return handler.next(response);
         },
         onError: (DioError error, handler) {
-          switch (error.type) {
-            case DioErrorType.other:
-              throw MException(code: 500, message: '');
-            case DioErrorType.connectTimeout:
-              throw MException(code: 501, message: '');
-            case DioErrorType.receiveTimeout:
-              throw MException(code: 502, message: '');
-            default:
-              throw MException(code: 600, message: '');
-          }
+          return handler.next(error);
         },
       ),
     );
