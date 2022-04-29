@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 class Validators {
   static String? validateEmail(String? email, String emptyError, String error) {
     final _pattern = RegExp(
