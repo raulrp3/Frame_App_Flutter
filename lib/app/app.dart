@@ -26,14 +26,14 @@ class App extends StatelessWidget {
           ),
           appBarTheme: const AppBarTheme(color: Colors.black),
         ),
-        localizationsDelegates: [
+        localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         localeResolutionCallback: (locale, supportedLocales) {
-          for (var supportedLocale in supportedLocales) {
+          for (final supportedLocale in supportedLocales) {
             if (supportedLocale.languageCode == locale!.languageCode) {
               return supportedLocale;
             }

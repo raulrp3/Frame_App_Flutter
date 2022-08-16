@@ -5,6 +5,8 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+// ignore_for_file: strict_raw_type
+
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';

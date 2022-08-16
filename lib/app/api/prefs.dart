@@ -1,4 +1,4 @@
-// ignore_for_file: lines_longer_than_80_chars, constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars, constant_identifier_names, avoid_positional_boolean_parameters
 
 import 'package:shared_preferences/shared_preferences.dart';
 

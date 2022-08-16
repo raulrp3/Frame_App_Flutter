@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_void_async
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:frame_app_flutter/app/api/prefs.dart';

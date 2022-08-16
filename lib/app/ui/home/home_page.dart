@@ -1,3 +1,5 @@
+// ignore_for_file: strict_raw_type, use_colored_box
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

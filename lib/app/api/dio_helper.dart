@@ -8,9 +8,9 @@ import 'package:package_info/package_info.dart';
 
 class DioHelper {
   static Dio build(String baseUrl) {
-    var options = BaseOptions(baseUrl: baseUrl, validateStatus: (value) => value! < 600);
+    final options = BaseOptions(baseUrl: baseUrl, validateStatus: (value) => value! < 600);
 
-    var dio = Dio(options);
+    final dio = Dio(options);
 
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -18,8 +18,8 @@ class DioHelper {
           final info = await PackageInfo.fromPlatform();
 
           options.headers['Authorization'] = await Prefs.getStringValue(EnumPrefs.TOKEN);
-          options.headers['app-version'] = '${info.version}';
-          options.headers['platform'] = '${Platform.isAndroid ? 'android' : 'ios'}';
+          options.headers['app-version'] = info.version;
+          options.headers['platform'] = Platform.isAndroid ? 'android' : 'ios';
           options.headers['lang'] = 'es';
 
           return handler.next(options);
